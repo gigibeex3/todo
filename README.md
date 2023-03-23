@@ -10,6 +10,6 @@ Simple to-do application that enables adding, crossing out, and deleting items. 
 - https://nodejs.org/en
 
 ## Things To Finish
-[] create a delete function to remove items
-[] create a component to organize tasks by date
-[] finish stylizing
+- [ ] create a delete function to remove items
+- [ ] create a component to organize tasks by date
+- [ ] finish stylizing
