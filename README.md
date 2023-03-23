@@ -1,4 +1,4 @@
-![To Do App](https://file%2B.vscode-resource.vscode-cdn.net/c%3A/Users/gigi/Documents/dev/PROJECTS/to-do-react/to-do/src/ToDo.png?version%3D1679604749748)
+![ToDo](https://user-images.githubusercontent.com/96400968/227357738-6fbe41a1-7ea5-460e-a209-f1bee3e7c16c.png)
 
 # To-Do App
 
