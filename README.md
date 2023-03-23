@@ -1,4 +1,4 @@
-#To-Do App
+# To-Do App
 
 Simple to-do application that enables adding, crossing out, and deleting items. Created with React, TailwindCSS, Node.js, and DaisyUI.
 
