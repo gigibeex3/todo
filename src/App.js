@@ -1,11 +1,20 @@
 import "./App.css";
 import { BsJournalCheck } from "react-icons/bs";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { VscChromeClose } from "react-icons/vsc";
+import LocalStorage from "./LocalStorage";
 
 function App() {
   const [toDoItem, setToDoItem] = useState("");
-  const [toDoList, setTodoList] = useState([]);
+  const [toDoList, setTodoList] = LocalStorage('myToDoList', []);
   const [isChecked, setIsChecked] = useState([]);
+  const [currentDate, setCurrentDate] = useState("");;
+
+
+/* It's a hook that runs when the component mounts. It sets the current date to the current date. */
+  useEffect(() => { 
+    setCurrentDate(new Date().toLocaleDateString()) 
+  }, []);
 
   // The function takes in an event as an argument, and then sets the state of the toDoItem to the value of the input field
   const handleInput = (e) => {
@@ -25,6 +34,21 @@ function App() {
     const newCheckedList = [...isChecked];
     newCheckedList[index] = !isChecked[index];
     setIsChecked(newCheckedList);
+  };
+
+
+  // We're creating a new array called newToDoList that is a copy of the toDoList array. We then remove the item at the index that was passed in as an argument. We then set the toDoList state to the new array
+  const handleDelete = (index) => {
+    const newToDoList = [...toDoList];
+    newToDoList.splice(index, 1);
+    setTodoList(newToDoList);
+
+    const newCheckedList = [...isChecked];
+    newCheckedList.splice(index, 1);
+    setIsChecked(newCheckedList);
+    if (newCheckedList.every(checked => checked)) {
+      setCurrentDate("");
+    }
   };
 
   return (
@@ -53,11 +77,12 @@ function App() {
           </div>
         </div>
       </main>
-      <aside className="w-1/4 bg-secondary p-4">
-        <ul className="divide-y divide-primary-content text-center align-middle">
+      <aside className="w-1/4 bg-base-content p-4">
+        <ul className="text-center align-middle">
+        <p className="text-white bg-neutral-focus">{currentDate}</p> {/* Date will be displayed here */}
           {toDoList.map((toDoItem, index) => (
             <div
-              className="flex items-center space-x-2 space-y-3 "
+              className="flex items-center py-3"
               key={index}
             >
               <input
@@ -66,9 +91,10 @@ function App() {
                 checked={isChecked[index]}
                 onChange={() => handleCheck(index)}
               />
-              <li className={isChecked[index] ? "line-through opacity-50" : ""}>
+              <li className={isChecked[index] ? "line-through text-white opacity-50 ml-2" : "text-white align-middle ml-2"}>
                 {toDoItem}
               </li>
+              <VscChromeClose className="text-white text-lg hover:text-primary cursor-pointer ml-auto" onClick={() => handleDelete(index)} />
             </div>
           ))}
         </ul>
