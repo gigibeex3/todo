@@ -13,6 +13,7 @@ Simple to-do application that enables adding, crossing out, and deleting items. 
 - https://react-icons.github.io/react-icons
 - https://react.dev/
 - https://nodejs.org/en
+- <a href="https://www.freepik.com/free-vector/modern-soft-yellow-watercolor-texture-beautiful-background_26798875.htm#query=pastel%20yellow&position=5&from_view=keyword&track=ais"> Background Image by Creative_hat</a> on Freepik
 
 ## Things To Finish
 - [x] create a delete function to remove items
