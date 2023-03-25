@@ -8,7 +8,7 @@ const ToDoItem = ({ toDoItems, isChecked, onCheck, onDelete }) => {
            {/* Creating a checkbox that is checked if the isChecked prop is true. */}
             <input
                 type="checkbox"
-                className="checkbox border-white rounded-full w-5 h-5 border-2"
+                className="checkbox lg:border-white rounded-full w-5 h-5 border-2"
                 checked={isChecked}
                 onChange={onCheck}
             />
@@ -17,8 +17,8 @@ const ToDoItem = ({ toDoItems, isChecked, onCheck, onDelete }) => {
             <li
                 className={
                     isChecked
-                        ? "ml-2 text-white line-through opacity-50"
-                        : "ml-2 align-middle text-white"
+                        ? "ml-2 lg:text-white md:text-black line-through opacity-50"
+                        : "ml-2 align-middle lg:text-white md:text-black"
                 }
             >
                 {toDoItems.task}
