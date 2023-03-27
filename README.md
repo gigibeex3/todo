@@ -5,6 +5,10 @@
 
 Simple to-do application that enables adding, crossing out, and deleting items. Created with React, TailwindCSS, Node.js, and DaisyUI.
 
+##Site
+
+https://todos-manage.netlify.app/
+
 ## Built With
 - https://daisyui.com/
 - https://tailwindcss.com/
