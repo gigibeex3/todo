@@ -1,12 +1,10 @@
-import { useState } from 'react';
-import LocalStorage from './LocalStorage';
-
+import { useState } from "react";
+import LocalStorage from "./LocalStorage";
 
 const useToDoList = () => {
     /* Using the LocalStorage hook to create a toDoList state and a setTodoList function. */
-    const [toDoList, setTodoList] = LocalStorage('myToDoList', []);
+    const [toDoList, setTodoList] = LocalStorage("myToDoList", []);
     const [isChecked, setIsChecked] = useState([]);
-
 
     //  add item to TodoList
     const addToDo = (toDoItem) => {
@@ -22,16 +20,19 @@ const useToDoList = () => {
     };
 
     // deletes list
-    const deleteToDo = (index) => {
-        const newToDoList = [...toDoList];
-        newToDoList.splice(index, 1);
-        setTodoList(newToDoList);
-        const newCheckedList = [...isChecked];
-        newCheckedList.splice(index, 1);
-        setIsChecked(newCheckedList);
+    const deleteToDo = (id) => {
+        const index = toDoList.findIndex((toDoItem) => toDoItem.id === id);
+        if (index > -1) {
+            const newToDoList = [...toDoList];
+            newToDoList.splice(index, 1);
+            setTodoList(newToDoList);
+            const newCheckedList = [...isChecked];
+            newCheckedList.splice(index, 1);
+            setIsChecked(newCheckedList);
+        }
     };
 
     return { toDoList, addToDo, toggleCheck, deleteToDo, isChecked };
-}
+};
 
-export default useToDoList
+export default useToDoList;

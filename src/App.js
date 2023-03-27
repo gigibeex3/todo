@@ -11,7 +11,6 @@ function App() {
     {}
   );
 
-  /* When the component mounts, hook runs. Sets the current date to the current date, and only will show if task is entered */
   useEffect(() => {
     if (toDoList.length > 0) {
       setCurrentDate(new Date().toLocaleDateString());
@@ -20,12 +19,10 @@ function App() {
     }
   }, [toDoList]);
 
-  // The function takes in an event as an argument, and then sets the state of the toDoItem to the value of the input field
   const handleInput = (e) => {
     setToDoItems(e.target.value);
   };
 
-  // When the form is submitted, prevent the default action, create a new task object with the current date and time as the id and the toDoItems as the task, add the new task to the toDoItems array, and reset the toDoItems state to an empty string
   const handleForm = (e) => {
     e.preventDefault();
     const newTask = { id: Date.now(), task: toDoItems };
@@ -34,38 +31,48 @@ function App() {
   };
 
   return (
-    <div className="background flex flex-row">
-      <main className="flex h-screen w-full items-center justify-center p-4 lg:w-3/4">
-        <div className="my-5 w-full max-w-xs space-y-4">
-          <h1 className="lg:text-center lg:text-5xl">to-dos</h1>
-          <BsJournalCheck className="mx-auto text-3xl" />
-          <h2 className="text-center text-xl">Add your first to-do</h2>
-          <p className="text-center">What do you want to get done today?</p>
-          <form onSubmit={handleForm}>
-            <div className="flex">
-              <input
-                type="text"
-                value={toDoItems}
-                onChange={handleInput}
-                placeholder="i.e drink water!"
-                aria-label="Enter a new to-do item"
-                className="input input-sm w-full max-w-xs border-opacity-100"
-              />
-            </div>
-          </form>
+    <div className="flex flex-row">
+    <main className="flex min-h-screen w-full justify-center p-4 lg:w-3/4 lg:items-center">
+      <div className="w-full max-w-xs flex-grow lg:my-5 lg:space-y-4">
+        <div className="my-3 flex items-center space-x-2 lg:flex-col lg:space-x-0 lg:space-y-4">
+          <h1 className="font-bold lg:text-center lg:text-5xl lg:font-normal">
+            to-dos
+          </h1>
+          <BsJournalCheck className="lg:mx-auto lg:text-3xl" />
+        </div>
+          <h2 className="hidden lg:block lg:text-center lg:text-xl">
+            Add your first to-do
+          </h2>
+          <p className="hidden lg:block lg:text-center">
+            What do you want to get done today?
+          </p>
+          <div className="fixed bottom-0 mx-auto my-4 w-full lg:static lg:w-auto lg:p-0">
+            <form onSubmit={handleForm}>
+              <div className="flex">
+                <input
+                  type="text"
+                  value={toDoItems}
+                  onChange={handleInput}
+                  placeholder="i.e drink water!"
+                  aria-label="Enter a new to-do item"
+                  className="input input-sm w-full max-w-xs border-opacity-100"
+                />
+              </div>
+            </form>
+          </div>
           {/* sm screen task */}
-          <div className="w-full md:block lg:hidden">
-            <p className="text-md text-left font-bold text-black underline underline-offset-2">
-              {currentDate}
-            </p>
-            <ul>
-              {toDoList.map((toDoItems, index) => (
+          <div className="relative w-full md:block lg:hidden">
+          <p className="text-md mt-5 text-left font-bold text-black underline underline-offset-2">
+            {currentDate}
+          </p>
+          <ul className="tasks max-h-screen overflow-y-auto pb-16">
+              {toDoList.map((toDoItems) => (
                 <ToDoItem
-                  key={index}
+                  key={toDoItems.id}
                   toDoItems={toDoItems}
-                  isChecked={isChecked[index]}
-                  onCheck={() => toggleCheck(index)}
-                  onDelete={() => deleteToDo(index)}
+                  isChecked={isChecked[toDoItems.id]}
+                  onCheck={() => toggleCheck(toDoItems.id)}
+                  onDelete={() => deleteToDo(toDoItems.id)}
                 />
               ))}
             </ul>
@@ -73,20 +80,20 @@ function App() {
         </div>
       </main>
       {/* lg screen task */}
-      <div className="hidden lg:block lg:w-1/4 lg:bg-black lg:bg-opacity-50 lg:p-3">
+      <div className="scrollable-right hidden lg:block lg:w-1/4 lg:bg-black lg:bg-opacity-50 lg:p-3">
         <div className="w-full">
           <p className="text-md text-left font-bold text-white underline underline-offset-2">
             {currentDate}
           </p>
         </div>
         <ul>
-          {toDoList.map((toDoItems, index) => (
+          {toDoList.map((toDoItems) => (
             <ToDoItem
-              key={index}
+              key={toDoItems.id}
               toDoItems={toDoItems}
-              isChecked={isChecked[index]}
-              onCheck={() => toggleCheck(index)}
-              onDelete={() => deleteToDo(index)}
+              isChecked={isChecked[toDoItems.id]}
+              onCheck={() => toggleCheck(toDoItems.id)}
+              onDelete={() => deleteToDo(toDoItems.id)}
             />
           ))}
         </ul>

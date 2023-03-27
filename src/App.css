@@ -1,3 +1,23 @@
-.background {
+body {
     background-image: url(./backgroundimage.jpg);
+    background-repeat: repeat;
+    background-attachment: scroll;
+}
+
+.scrollable-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.tasks {
+    margin-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+    .tasks {
+        margin-top: 0;
+    }
 }

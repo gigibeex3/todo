@@ -5,10 +5,10 @@ import { VscChromeClose } from "react-icons/vsc";
 const ToDoItem = ({ toDoItems, isChecked, onCheck, onDelete }) => {
     return (
         <div className="flex items-center py-3">
-           {/* Creating a checkbox that is checked if the isChecked prop is true. */}
+            {/* Creating a checkbox that is checked if the isChecked prop is true. */}
             <input
                 type="checkbox"
-                className="checkbox lg:border-white rounded-full w-5 h-5 border-2"
+                className="checkbox h-5 w-5 rounded-full border-2 lg:border-white"
                 checked={isChecked}
                 onChange={onCheck}
             />
@@ -17,14 +17,14 @@ const ToDoItem = ({ toDoItems, isChecked, onCheck, onDelete }) => {
             <li
                 className={
                     isChecked
-                        ? "ml-2 lg:text-white md:text-black line-through opacity-50"
-                        : "ml-2 align-middle lg:text-white md:text-black"
+                        ? "ml-2 line-through opacity-50 md:text-black lg:text-white"
+                        : "ml-2 align-middle md:text-black lg:text-white"
                 }
             >
                 {toDoItems.task}
             </li>
             <VscChromeClose
-                className="ml-auto cursor-pointer text-lg text-white hover:text-primary"
+                className="ml-auto cursor-pointer text-sm text-black hover:text-primary lg:text-lg lg:text-white"
                 onClick={onDelete}
             />
         </div>
