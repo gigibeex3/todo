@@ -14,8 +14,12 @@ const useToDoList = () => {
 
     // checks or unchecks
     const toggleCheck = (index) => {
-        const newCheckedList = [...isChecked];
-        newCheckedList[index] = !isChecked[index];
+        const newCheckedList = isChecked.map((isCheckedItem, itemIndex) => {
+            if (itemIndex === index) {
+                return !isCheckedItem;
+            }
+            return isCheckedItem;
+        });
         setIsChecked(newCheckedList);
     };
 
